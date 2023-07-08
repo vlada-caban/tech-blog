@@ -8,27 +8,30 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-    {{!-- Navigation bar --}}
+    {{! Navigation bar }}
     <nav class="deep-purple darken-3" role="navigation">
       <div class="nav-wrapper container">
         <a id="logo-container" href="/" class="brand-logo">Tech Blog</a>
-        {{!-- navigation bar for non-mobile devices --}}
+        {{! navigation bar for non-mobile devices }}
         <ul class="right hide-on-med-and-down">
           {{#if loggedIn}}
-            <li><a href="#">New Post</a></li>
+            <li><a href="/newpost">New Post</a></li>
             <li><a id="logout">Logout</a></li>
           {{else}}
             <li><a href="/login">Login</a></li>
           {{/if}}
         </ul>
-        {{!-- navigation bar for mobile devices --}}
+        {{! navigation bar for mobile devices }}
         <ul id="nav-mobile" class="sidenav">
           {{#if loggedIn}}
-            <li><a href="#">New Post</a></li>
+            <li><a href="/newpost">New Post</a></li>
             <li><a id="logout">Logout</a></li>
           {{else}}
             <li><a href="/login">Login</a></li>
@@ -49,15 +52,12 @@
         {{! <script src="/js/newpost.js"></script> }}
 
       {{/if}}
-      
 
     </div>
   </body>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
-      ></script>
-      <script
-        src="/js/sidebar.js"
-      ></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+  ></script>
+  <script src="/js/sidebar.js"></script>
 </html>

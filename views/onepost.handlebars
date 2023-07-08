@@ -1,3 +1,31 @@
-{{!-- view to display one post with comments--}}
+{{! view to display one post with comments}}
 
-<h2>One posts will be here</h2>
+<h3>{{post.post_title}}</h3>
+<p>{{post.post_text}}</p>
+<p>
+  By:
+  {{post.user.username}}
+</p>
+<p>
+  Posted on:
+  {{format_date post.createdAt}}
+</p>
+
+<h4>Comments:</h4>
+{{#each post.comments as |comment|}}
+<p>{{comment.comment_text}}</p>
+<p>{{format_date comment.createdAt}}</p>
+</br>
+{{/each}}
+
+<h4>Add comment:</h4>
+<form class="form add-comment-form">
+      
+        <label for="new_comment">Type your comment below:</label>
+        <input class="form-input" type="text" id="new-comment" />
+      
+      
+        <button class="btn" id="add-comment-btn" type="submit">Add Comment</button>
+      
+</form>
+<script src="/js/add-comment.js"></script>

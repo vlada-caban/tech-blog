@@ -1,32 +1,32 @@
 const router = require('express').Router();
-const { Post, Comment } = require('../models');
+const { Post, Comment, User } = require('../models');
 
 // GET all posts for homepage
 router.get('/', async (req, res) => {
-  // try {
-  //   const postsData = await Post.findAll({
-  //     include: [
-  //       {
-  //         model: Comment,
-  //       },
-  //     ],
-  //   });
+  try {
+    const postData = await Post.findAll({
+      include: [
+        {
+          model: Comment,
+          model: User
+        },
+      ],
+    });
 
-  //   const posts = postData.map((post) =>
-  //     post.get({ plain: true })
-  //   );
+    const posts = postData.map((post) =>
+      post.get({ plain: true })
+    );
+    console.log(posts);
+    res.render('homepage', {
+      posts,
+      loggedIn: req.session.loggedIn,
+    });
 
-  //   res.render('homepage', {
-  //     posts,
-  //     loggedIn: req.session.loggedIn,
-  //   });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 
-  // } catch (err) {
-  //   console.log(err);
-  //   res.status(500).json(err);
-  // }
-
-  res.render('homepage', {loggedIn: req.session.loggedIn})
 });
 
 // GET one post
@@ -39,12 +39,14 @@ router.get('/post/:id', async (req, res) => {
     try {
       const postData = await Post.findByPk(req.params.id, {
         include: [
-          {
-            model: Comment,
-          },
+          {model: Comment},
+          {model: User}
+            
+          ,
         ],
       });
       const post = postData.get({ plain: true });
+      console.log(post);
       res.render('onepost', { post, loggedIn: req.session.loggedIn });
     } catch (err) {
       console.log(err);
@@ -52,6 +54,31 @@ router.get('/post/:id', async (req, res) => {
     }
   }
 });
+
+router.post("/comment", async (req, res) => {
+  // add a new comment
+  try {
+    const commentData = await Comment.create(req.body);
+    res.status(200).json(commentData);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+router.post("/post", async (req, res) => {
+  // add a new post
+  try {
+    const postData = await Post.create(req.body);
+    res.status(200).json(postData);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+router.get("/newpost", (req, res) => {
+  res.render("newpost");
+});
+
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {

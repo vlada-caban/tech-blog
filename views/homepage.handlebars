@@ -1,3 +1,27 @@
 {{!-- view to display all posts on homepage --}}
 
-<h2>All posts will be here</h2>
+
+
+<h3>Recent posts:</h3>
+
+{{#each posts as |post|}}
+    <div class='card'>
+        <div class="card-content">
+            <span class="card-title">
+        {{post.post_title}}</span>
+        <p>
+        {{post.post_text}}
+      </p>
+      </br>
+      <p>
+        By: {{user.username}}
+      </p>
+      <p>
+        Posted on: {{format_date post.createdAt}}
+      </p>
+        </div>
+        <div class="card-action">
+          <a href="post/{{post.id}}">Go to post page</a>
+        </div>
+    </div>
+  {{/each}}
