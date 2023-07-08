@@ -1,34 +1,63 @@
-<!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tech Blog</title>
-  <link rel="stylesheet" type="text/css" href="/css/jass.css">
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech Blog</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
 
-<body>
-  <header>
-    <h1>Welcome to the Tech Blog</h1>
-  </header>
-  <nav>
-    <a href="/">Home</a>
-    {{#if loggedIn}}
-    <button id="newpost" class="btn-no-style">New Post</button>
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{else}}
-    <a href="/login">Login</a>
-    {{/if}}
-  </nav>
-  <main>
-      {{{body}}}
-  </main>
-  {{#if loggedIn}}
-  <script src="/js/logout.js"></script>
-  {{!-- <script src="/js/newpost.js"></script> --}}
-  {{/if}}
-</body>
+  <body>
+    {{!-- Navigation bar --}}
+    <nav class="deep-purple darken-3" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="/" class="brand-logo">Tech Blog</a>
+        {{!-- navigation bar for non-mobile devices --}}
+        <ul class="right hide-on-med-and-down">
+          {{#if loggedIn}}
+            <li><a href="#">New Post</a></li>
+            <li><a id="logout">Logout</a></li>
+          {{else}}
+            <li><a href="/login">Login</a></li>
+          {{/if}}
+        </ul>
+        {{!-- navigation bar for mobile devices --}}
+        <ul id="nav-mobile" class="sidenav">
+          {{#if loggedIn}}
+            <li><a href="#">New Post</a></li>
+            <li><a id="logout">Logout</a></li>
+          {{else}}
+            <li><a href="/login">Login</a></li>
+          {{/if}}
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i
+            class="material-icons"
+          >menu</i></a>
+      </div>
+    </nav>
 
+    <div class="container">
+      <main>
+        {{{body}}}
+      </main>
+      {{#if loggedIn}}
+        <script src="/js/logout.js"></script>
+        {{! <script src="/js/newpost.js"></script> }}
+
+      {{/if}}
+      
+
+    </div>
+  </body>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+      ></script>
+      <script
+        src="/js/sidebar.js"
+      ></script>
 </html>
