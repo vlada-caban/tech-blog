@@ -1,0 +1,30 @@
+{{!-- one post to edit that belongs to the user logged in --}}
+
+<h3>Make updates to the post below:</h3>
+
+<form class="col s12">
+  <div class="row">
+    <div class="input-field col s12">
+      <textarea id="post_title" class="materialize-textarea">{{post.post_title}}</textarea>
+      <label for="post_title">Post title</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s12">
+      <textarea id="post_body" class="materialize-textarea">{{post.post_text}}</textarea>
+      <label for="post_body">Post body</label>
+    </div>
+  </div>
+  <button class="btn purple darken-1" id="edit-post-btn" type="submit">Update Post</button>
+</form>
+
+<p>
+  By:
+  {{post.user.username}}
+</p>
+<p>
+  Posted on:
+  {{format_date post.createdAt}}
+</p>
+
+<script src="/js/edit-post.js"></script>

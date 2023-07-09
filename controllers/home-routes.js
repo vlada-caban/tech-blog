@@ -40,8 +40,63 @@ router.get("/post/:id", async (req, res) => {
       });
       const post = postData.get({ plain: true });
       // console.log(post);
-      console.log(req.session.cookie);
+      // console.log(req.session.cookie);
       res.render("onepost", { post, loggedIn: req.session.loggedIn });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  }
+});
+
+// UPDATE one post
+router.put("/post/:id", async (req, res) => {
+  // If the user is not logged in, redirect the user to the login page
+  if (!req.session.loggedIn) {
+    res.redirect("/login");
+  } else {
+    // If the user is logged in, update post in database
+    try {
+      const post_title = req.body.post_title;
+      const post_text = req.body.post_body;
+
+      const postData = await Post.update(
+        { post_title, post_text },
+        {
+          where: {
+            id: req.params.id,
+          },
+        }
+      );
+  
+      res.status(200).json(postData);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  }
+});
+
+
+// GET one post to edit
+router.get("/post/edit/:id", async (req, res) => {
+  // If the user is not logged in, redirect the user to the login page
+  if (!req.session.loggedIn) {
+    res.redirect("/login");
+  } else {
+    // If the user is logged in, allow them to edit post
+    try {
+      const userID = req.session.user_id;
+      const postData = await Post.findByPk(req.params.id, {
+        where: {
+          user_id: userID,
+        },
+        include: [{ model: Comment }, { model: User }],
+      });
+      const post = postData.get({ plain: true });
+      // console.log(post);
+      // console.log(req.session.cookie);
+      res.render("editpost", { post, loggedIn: req.session.loggedIn });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -114,7 +169,6 @@ router.get("/dashboard", async (req, res) => {
 });
 
 router.get("/newpost", (req, res) => {
-  // res.render("newpost"), { loggedIn: req.session.loggedIn };
   if (req.session.loggedIn) {
     res.render("newpost", { loggedIn: req.session.loggedIn });
     return;
