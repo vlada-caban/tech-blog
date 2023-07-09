@@ -1,10 +1,10 @@
 const deletePostHandler = async (e) => {
-  e.preventDefault();
+  e.stopPropagation();
+
+  const post = e.target;
+  const post_id = post.dataset.id;
 
   console.log("Delete post was pressed!");
-
-  const post = document.querySelector("#delete-post-btn");
-  const post_id = post.dataset.id;
 
   const response = await fetch(`/post/${post_id}`, {
     method: "DELETE",
@@ -18,6 +18,8 @@ const deletePostHandler = async (e) => {
   }
 };
 
-document
-  .querySelector("#delete-post-btn")
-  .addEventListener("click", deletePostHandler);
+const btns = document.querySelectorAll("#delete-post-btn");
+
+for (i of btns) {
+  i.addEventListener("click", deletePostHandler);
+}

@@ -6,6 +6,9 @@ const addPostFormHandler = async (e) => {
   const post_title = document.querySelector("#post_title").value;
   const post_body = document.querySelector("#post_body").value;
 
+  console.log(post_title);
+  console.log(post_body);
+
   if (post_title && post_body) {
     const response = await fetch("/post", {
       method: "POST",

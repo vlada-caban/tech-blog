@@ -1,17 +1,22 @@
-
-{{!-- view to add a new post --}}
+{{! view to add a new post }}
 
 <h3>Fill below form to add a new post</h3>
 
-<form class="form add-post-form">
-      
-        <label for="post_title">Enter post title:</label>
-        <input class="form-input" type="text" id="post_title" />
-      
-      <label for="post_body">Enter post body:</label>
-        <input class="form-input" type="text" id="post_body" />
-
-        <button class="btn purple darken-1" id="add-post-btn" type="submit">Publish New Post</button>
-      
+<form class="col s12">
+  <div class="row">
+    <div class="input-field col s12">
+      <textarea id="post_title" class="materialize-textarea"></textarea>
+      <label for="post_title">Enter post title</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s12">
+      <textarea id="post_body" class="materialize-textarea"></textarea>
+      <label for="post_body">Enter post body</label>
+    </div>
+  </div>
+  <button class="btn purple darken-1" id="add-post-btn" type="submit">Publish
+    New Post</button>
 </form>
+
 <script src="/js/add-post.js"></script>
