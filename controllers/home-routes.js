@@ -36,7 +36,6 @@ router.get("/post/:id", async (req, res) => {
   } else {
     // If the user is logged in, allow them to view full post
     try {
-      // TODO: need to pass username in comment
       const postData = await Post.findByPk(req.params.id, {
         include: [
           {
@@ -50,22 +49,23 @@ router.get("/post/:id", async (req, res) => {
           { model: User },
         ],
       });
-        // attributes: {
-        //   include: [
-        //     [
-        //       sequelize.literal(
-        //         "(SELECT user.username FROM user, comment WHERE comment.user_id=user.id)"
-        //       ),
-        //       "user_comment",
-        //     ],
-        //   ],
-        // },
+        
+      //   const commentData = await Comment.findAll({
+      //     include: [{ model: User }],
+      //     where: [{ post_id: req.params.id }],
+      //   });
 
-      console.log("ROW DATA:");
-      console.log(postData);
+      // const comments = commentData.map((comment) => comment.get({ plain: true }));
+
+      // console.log("ROW DATA:");
+      // console.log(postData);
       const post = postData.get({ plain: true });
-      console.log("PROCESSED DATA:");
-      console.log(post);
+      // console.log("PROCESSED DATA:");
+      // console.log(post);
+
+      // const comments = commentData.get({ plain: true });
+      // console.log(comments);
+
       res.render("onepost", { post, loggedIn: req.session.loggedIn });
     } catch (err) {
       console.log(err);

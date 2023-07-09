@@ -1,6 +1,5 @@
 {{! view to display one post with comments}}
 
-
 <h4>Post details page</h4>
 
 <div class='card'>
@@ -17,8 +16,8 @@
 <div class='card'>
   <div class="card-content">
     <p>{{comment.comment_text}}</p>
+    <p>By: {{comment.user.username}}</p>
     <p>Commented on: {{format_date comment.createdAt}}</p>
-    {{!-- TODO: how to get user from comment user_id --}}
   </div>
 </div>
 {{/each}}
