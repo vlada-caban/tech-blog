@@ -22,18 +22,22 @@
         {{! navigation bar for non-mobile devices }}
         <ul class="right hide-on-med-and-down">
           {{#if loggedIn}}
-            <li><a href="/newpost">New Post</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
             <li><a id="logout">Logout</a></li>
           {{else}}
+            <li><a href="/">Home</a></li>
             <li><a href="/login">Login</a></li>
           {{/if}}
         </ul>
         {{! navigation bar for mobile devices }}
         <ul id="nav-mobile" class="sidenav">
           {{#if loggedIn}}
-            <li><a href="/newpost">New Post</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
             <li><a id="logout">Logout</a></li>
           {{else}}
+            <li><a href="/">Home</a></li>
             <li><a href="/login">Login</a></li>
           {{/if}}
         </ul>

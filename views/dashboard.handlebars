@@ -1,8 +1,9 @@
-{{!-- view to display all posts on homepage --}}
 
+<h3>Welcome to your dashboard</h3>
 
+<a href="/newpost"><button class="btn purple darken-1">Add new post</button></a>
 
-<h3>Recent posts:</h3>
+</br>
 
 {{#each posts as |post|}}
     <div class='card'>
@@ -22,6 +23,9 @@
         </div>
         <div class="card-action">
           <a href="post/{{post.id}}" class="purple-text text-darken-4">Go to post page</a>
+          <a href="/dashboard" class="red-text text-accent-4">Delete post</a>
+          <a href="/dashboard" class="purple-text text-darken-4">Update post</a>
         </div>
     </div>
   {{/each}}
+

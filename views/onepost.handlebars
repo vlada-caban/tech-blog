@@ -15,17 +15,14 @@
 {{#each post.comments as |comment|}}
 <p>{{comment.comment_text}}</p>
 <p>{{format_date comment.createdAt}}</p>
+{{!-- TODO: how to get user from comment user_id --}}
 </br>
 {{/each}}
 
 <h4>Add comment:</h4>
 <form class="form add-comment-form">
-      
-        <label for="new_comment">Type your comment below:</label>
-        <input class="form-input" type="text" id="new-comment" />
-      
-      
-        <button class="btn" id="add-comment-btn" type="submit">Add Comment</button>
-      
+  <label for="new_comment">Type your comment below:</label>
+  <input class="form-input" type="text" id="new-comment" />
+  <button class="btn purple darken-1" id="add-comment-btn" type="submit">Add Comment</button>
 </form>
 <script src="/js/add-comment.js"></script>
